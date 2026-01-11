@@ -1,23 +1,23 @@
 import "reflect-metadata";
-import express, { Application } from "express";
-import { config } from "dotenv";
+import express from "express";
+import { errorHandler } from "./api/middleware/handle-error";
+import { authRouter } from "./api/router/auth-router";
+import { profileRouter } from "./api/router/profile-router";
 
-// Load environment variables
-config();
+const app = express();
 
-const app: Application = express();
-
-// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Health check route
 app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Docsy API is running!",
-  });
+  res.json({ message: "Success" });
 });
 
-// Export app for use in server.ts
+// Auth routes
+app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
+// app.use("/api/documents", documentRouter);
+
+// Error handler middleware (must be last)
+app.use(errorHandler);
+
 export default app;
