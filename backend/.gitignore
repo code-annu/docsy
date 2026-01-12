@@ -20,3 +20,7 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+
+dummy_documents.txt
+dummy_users.txt
