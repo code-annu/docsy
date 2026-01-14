@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import { LoginPage } from "./features/authentication/ui/pages/LoginPage";
 import { SignupPage } from "./features/authentication/ui/pages/SignupPage";
 import { DashboardLayout } from "./common/layouts/DashboardLayout";
-import { HomePage } from "./features/dashboard/HomePage";
+import { HomePage } from "./features/dashboard/pages/HomePage";
 import { ProfilePage } from "./features/profile/ui/pages/ProfilePage";
-import { HelpFeedbackPage } from "./features/dashboard/HelpFeedbackPage";
-import { SettingsPage } from "./features/dashboard/SettingsPage";
+import { HelpFeedbackPage } from "./features/dashboard/pages/HelpFeedbackPage";
+import { SettingsPage } from "./features/dashboard/pages/SettingsPage";
+import DocumentPage from "./features/documents/ui/pages/DocumentPage";
+import { DocumentEditorPage } from "./features/documents/ui/pages/DocumentEditorPage";
 
 export enum AppRoutes {
   LOGIN = "/login",
@@ -21,6 +23,7 @@ export enum AppRoutes {
 export const appRouter = createBrowserRouter([
   { path: AppRoutes.LOGIN, Component: LoginPage },
   { path: AppRoutes.SIGNUP, Component: SignupPage },
+  { path: `${AppRoutes.DOCUMENTS}/:id`, Component: DocumentEditorPage },
   {
     path: AppRoutes.HOME,
     Component: DashboardLayout,
@@ -40,6 +43,10 @@ export const appRouter = createBrowserRouter([
       {
         path: AppRoutes.SETTING,
         Component: SettingsPage,
+      },
+      {
+        path: AppRoutes.DOCUMENTS,
+        Component: DocumentPage,
       },
     ],
   },
